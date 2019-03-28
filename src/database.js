@@ -14,24 +14,25 @@ var database = firebase.database();
     });
 }
 document.getElementById('submitBtn').addEventListener('click', ()=> postTextFunction());
- 
+
+
  */
-
-let userId = "AyinjqsKT1M2x9Q5797yXr88Bu62"
-let name = 'Paco'
-let email = 'paco@gmail.com'
-let imageUrl = 'www.img.com'
-
 ////funcion para llenar la rama 'users' de la base de datos
-function writeUserData(userId, name, email, imageUrl) {
-    firebase.database().ref('users/' + userId).set({
-      username: name,
-      email: email,
-      profile_picture : imageUrl
-    });
-  }
+function writeUserData(userId, name, email, levelUser) {
+  firebase.database().ref('users/' + userId).set({
+    name: document.getElementById('name'),
+    levelUser: document.getElementById('typeUser'),
+    email: document.getElementById('email'),
+  });
+}
 
-  writeUserData (userId, name, email, imageUrl);
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+
+  }
+});
+
+
 
     //funcion para escribir un post nuevo base de datos user-post
     function writeNewPost(uid, username, picture, title, body) {
@@ -69,4 +70,3 @@ function writeUserData(userId, name, email, imageUrl) {
         writeNewPost(userId, name, picture, title, body)
 }
 document.getElementById('submitBtn').addEventListener('click', ()=> createDataForPost());
- 

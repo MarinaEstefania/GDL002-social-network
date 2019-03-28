@@ -1,6 +1,8 @@
+//Funcion para obtener la información del usuario
 
 //Funcion para registrar a los usuarios nuevos
 const registerFunction = () => {
+
   var email = document.getElementById('emailRegister').value;
   var password = document.getElementById('passwordRegister').value;
 
@@ -11,6 +13,22 @@ const registerFunction = () => {
       user.sendEmailVerification().then(function () {
         // Email sent.
         window.alert('Se envió un email de verificación a tu correo electrónico\nFavor de verificarlo')
+      }).then(function(){
+
+        var userId = user.uid;
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('emailRegister').value;
+
+        function writeUserData(userId, name, email) {
+          firebase.database().ref('users/' + userId).set({
+            username: name,
+            email: email,
+          });
+        }
+
+        writeUserData(userId, name, email);
+
+
       }).catch(function (error) {
         // An error happened.
         window.alert('error : ' + error.message);
@@ -32,10 +50,8 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("div-signin").style.display = "none";
     document.getElementById("div-register").style.display = "none";
     document.getElementById("plsVerify").style.display = "none";
-    document.getElementById("div-user").style.display = "block";
-    let uid = user.uid;
-    
-    console.log(uid)/*
+    document.getElementById("div-user").style.display = "block"; 
+    /*
 
     if(user.emailVerified != false){
       document.getElementById("div-signin").style.display = "none";
