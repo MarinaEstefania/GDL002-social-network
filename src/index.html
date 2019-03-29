@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,12 +15,12 @@
         <!--Formulario para Registro de Usuarios nuevos-->
         <section id="userRegister">
             <h4>Registro de usuarios</h4>
-            <input id="name" type="text" placeholder="Escribe tu nombre"/>
-    <!--         <input id="levelUser" type="text" placeholder="Selecciona tu Nivel de Usuario"/> -->
-            <input id="emailRegister" type="email" placeholder="Ingresa email"/>
-            <input id="passwordRegister" type="password" placeholder="Ingresa contraseña"/>
+            <input id="name" type="text" placeholder="Escribe tu nombre" />
+            <!--         <input id="levelUser" type="text" placeholder="Selecciona tu Nivel de Usuario"/> -->
+            <input id="emailRegister" type="email" placeholder="Ingresa email" />
+            <input id="passwordRegister" type="password" placeholder="Ingresa contraseña" />
             <button id="btnRegister">Regístrate</button>
-            </section>
+        </section>
     </div>
 
     <div id="div-register">
@@ -36,13 +35,13 @@
 
 
     <div>
-         <section id="plsVerify">
+        <section id="plsVerify">
             <h1>Para Acceder, por favor Verificar tu correo electrónico</h1>
             <!--  *******************AGREGAR BOTON REGRESAR (este boton no es el adecuado)**************** -->
             <button id="btnBacktoStart">Regresar</button>
         </section>
     </div>
-    <div id="div-user" >
+    <div id="div-user">
         <section id="userLogout">
             <button id="btnLogOut">Cerrar sesión</button>
         </section>
@@ -50,7 +49,7 @@
         <section id="wall">
             <h1>Bienvenido a Mundo Dulce</h1>
             <textarea id="postText" placeholder="¿Qué estás pensando?"></textarea>
-            <button  id="submitBtn">Publicar</button>
+            <button id="submitBtn">Publicar</button>
             <br>
             <p>Muro de Mundo Dulce :P</p>
             <input id="wallPost" type="text"></input>
@@ -64,17 +63,17 @@
     <script src="https://www.gstatic.com/firebasejs/5.7.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase-database.js"></script>
     <script>
-            // Initialize Firebase
-            var config = {
-                apiKey: "AIzaSyAFM1LQ38DF-ydFinuSApgtUrhFRmh37Qc",
-                authDomain: "red-social-595e4.firebaseapp.com",
-                databaseURL: "https://red-social-595e4.firebaseio.com",
-                projectId: "red-social-595e4",
-                storageBucket: "red-social-595e4.appspot.com",
-                messagingSenderId: "918699970408"
-            };
-            firebase.initializeApp(config);
-        </script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAFM1LQ38DF-ydFinuSApgtUrhFRmh37Qc",
+            authDomain: "red-social-595e4.firebaseapp.com",
+            databaseURL: "https://red-social-595e4.firebaseio.com",
+            projectId: "red-social-595e4",
+            storageBucket: "red-social-595e4.appspot.com",
+            messagingSenderId: "918699970408"
+        };
+        firebase.initializeApp(config);
+    </script>
     <script src="database.js"></script>
     <script src="main.js"></script>
 

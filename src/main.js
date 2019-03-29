@@ -13,7 +13,7 @@ const registerFunction = () => {
       user.sendEmailVerification().then(function () {
         // Email sent.
         window.alert('Se envió un email de verificación a tu correo electrónico\nFavor de verificarlo')
-      }).then(function(){
+      }).then(function () {
 
         var userId = user.uid;
         var name = document.getElementById('name').value;
@@ -44,13 +44,13 @@ const registerFunction = () => {
 document.getElementById('btnRegister').addEventListener('click', () => { registerFunction() });
 
 //Función para comprobar el Estado del Usuario (Dentro o Fuera de la sesión)
-firebase.auth().onAuthStateChanged(function(user) {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     // User is signed in.
     document.getElementById("div-signin").style.display = "none";
     document.getElementById("div-register").style.display = "none";
     document.getElementById("plsVerify").style.display = "none";
-    document.getElementById("div-user").style.display = "block"; 
+    document.getElementById("div-user").style.display = "block";
     /*
     if(user.emailVerified != false){
       document.getElementById("div-signin").style.display = "none";
@@ -98,15 +98,15 @@ document.getElementById('btnBacktoStart').addEventListener('click', () => { logo
 const authFacebookAccount = () => {
   var provider = new firebase.auth.FacebookAuthProvider();
 
-  firebase.auth().signInWithPopup(provider).then(function(result) {
+  firebase.auth().signInWithPopup(provider).then(function (result) {
     // This gives you a Facebook Access Token. You can use it to access the Facebook API.
     var token = result.credential.accessToken;
     // The signed-in user info.
     var user = result.user;
     // ...
-  }).then(function(){
+  }).then(function () {
     firebase.auth().signInWithRedirect(provider)
-  }).catch(function(error) {
+  }).catch(function (error) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
@@ -124,11 +124,11 @@ const authFacebookAccount = () => {
 document.getElementById('FB').addEventListener('click', () => authFacebookAccount());
 
 //FUNCION PARA SALIR CON FACEBOOK
-const logOutFVB = () =>{
-  firebase.auth().signOut().then(function() {
+const logOutFVB = () => {
+  firebase.auth().signOut().then(function () {
     // Sign-out successful.
     console.log('cerre sesion de FB')
-  }).catch(function(error) {
+  }).catch(function (error) {
     // An error happened.
     var errorCode = error.code;
     var errorMessage = error.message;

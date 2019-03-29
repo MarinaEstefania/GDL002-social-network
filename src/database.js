@@ -1,15 +1,6 @@
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     const userId = user.uid;
-    //Función para Cerrar Sesión
-    const logoutFunction = () => {
-      firebase.auth().signOut().then(function () {
-        // Sign-out successful.
-      }).catch(function (error) {
-        // An error happened.
-      });
-      console.log('Sali de la sesión');
-    }
 
     //creacion del post
     console.log(userId);
