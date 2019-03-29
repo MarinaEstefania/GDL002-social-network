@@ -1,72 +1,39 @@
-var database = firebase.database();
-
-/* /////////////Funcion que PUBLICA EN TIEMPO REAL EN EL MURO///////////////////////////////////
-  const postTextFunction = () => {
-    const postText = document.getElementById('postText').value;
-    let firebaseKey = firebase.database().ref('F/post/post1').push().getKey();
-    console.log(firebaseKey);
-    firebase.database().ref('F/post/post1/'+firebaseKey).set(postText);
-
-    var firebasewallText = firebase.database().ref('F/post/post1').child(firebaseKey)
-
-    firebasewallText.on('value', function(snapshot){
-        document.getElementById('wallPost').value = snapshot.val();
-    });
-}
-document.getElementById('submitBtn').addEventListener('click', ()=> postTextFunction());
-
-
- */
-////funcion para llenar la rama 'users' de la base de datos
-function writeUserData(userId, name, email, levelUser) {
-  firebase.database().ref('users/' + userId).set({
-    name: document.getElementById('name'),
-    levelUser: document.getElementById('typeUser'),
-    email: document.getElementById('email'),
-  });
-}
-
-firebase.auth().onAuthStateChanged((user) => {
+firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
+    const userId = user.uid;
+    //Función para Cerrar Sesión
+    const logoutFunction = () => {
+      firebase.auth().signOut().then(function () {
+        // Sign-out successful.
+      }).catch(function (error) {
+        // An error happened.
+      });
+      console.log('Sali de la sesión');
+    }
+
+    //creacion del post
+    console.log(userId);
+
+    const createPost = () => {
+      const postText = document.getElementById('postText').value;
+      // A post entry.
+      var postData = {
+        /*  author: username, */
+        uid: userId,
+        body: postText,
+        /*   title: title,
+          starCount: 0,
+          authorPic: picture */
+      };
+      // Get a key for a new Post.
+      var newPostKey = firebase.database().ref().child('posts').push().key;
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      var updates = {};
+      updates['/posts/' + newPostKey] = postData;
+      updates['/user-posts/' + userId + '/' + newPostKey] = postData;
+      return firebase.database().ref().update(updates);
+    }
+    document.getElementById('submitBtn').addEventListener('click', () => createPost());
 
   }
 });
-
-
-
-    //funcion para escribir un post nuevo base de datos user-post
-    function writeNewPost(uid, username, picture, title, body) {
-        // A post entry.
-        var postData = {
-        author: username,
-        uid: uid,
-        body: body,
-        title: title,
-        starCount: 0,
-        authorPic: picture
-        };
-
-        // Get a key for a new Post.
-        var newPostKey = firebase.database().ref().child('posts').push().key;
-
-        // Write the new post's data simultaneously in the posts list and the user's post list.
-        var updates = {};
-        updates['/posts/' + newPostKey] = postData;
-        updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-
-        return firebase.database().ref().update(updates);
-    }
-
-    //FUNCION PARA CREAR EL CONTENIDO DE POST EN LA DB
-    const createDataForPost = () => {
-        let postText = document.getElementById('postText').value;
-
-        //Variables de un nuevo post
-        let title = "some title"
-        let body = postText;
-        let picture = null;
-
-
-        writeNewPost(userId, name, picture, title, body)
-}
-document.getElementById('submitBtn').addEventListener('click', ()=> createDataForPost());

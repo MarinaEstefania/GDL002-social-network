@@ -52,7 +52,6 @@ firebase.auth().onAuthStateChanged(function(user) {
     document.getElementById("plsVerify").style.display = "none";
     document.getElementById("div-user").style.display = "block"; 
     /*
-
     if(user.emailVerified != false){
       document.getElementById("div-signin").style.display = "none";
       document.getElementById("div-register").style.display = "none";
@@ -138,3 +137,5 @@ const logOutFVB = () =>{
 }
 document.getElementById('logoutFB').addEventListener('click', () => logOutFVB());
 //window.histoty.push.state y replate.state
+
+
