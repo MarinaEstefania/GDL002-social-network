@@ -1,4 +1,3 @@
-
 // configuration
 Router.config({
   mode: 'history',
