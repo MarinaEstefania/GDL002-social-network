@@ -1,10 +1,10 @@
 const loginController = (rawTpl, outlet) => {
-    const tpl = templateEngine(rawTpl, {posts: []});
-    outlet.innerHTML = tpl;
+  const tpl = templateEngine(rawTpl, {posts: []});  
+  outlet.innerHTML = tpl; 
+
 
 //Funcion para registrar a los usuarios nuevos
 const registerFunction = () => {
-
   var email = document.getElementById('emailRegister').value;
   var password = document.getElementById('passwordRegister').value;
 
@@ -15,22 +15,6 @@ const registerFunction = () => {
       user.sendEmailVerification().then(function () {
         // Email sent.
         window.alert('Se envió un email de verificación a tu correo electrónico\nFavor de verificarlo')
-      }).then(function(){
-
-        var userId = user.uid;
-        var name = document.getElementById('name').value;
-        var email = document.getElementById('emailRegister').value;
-
-        function writeUserData(userId, name, email) {
-          firebase.database().ref('users/' + userId).set({
-            username: name,
-            email: email,
-          });
-        }
-
-        writeUserData(userId, name, email);
-
-
       }).catch(function (error) {
         // An error happened.
         window.alert('error : ' + error.message);
@@ -45,18 +29,18 @@ const registerFunction = () => {
 };
 document.getElementById('btnRegister').addEventListener('click', () => { registerFunction() });
 
-  //Funcion para iniciar Sesion
-  const loginFunction = () => {
-    var email = document.getElementById('emailLogin').value;
-    var password = document.getElementById('passwordLogin').value;
+//Funcion para iniciar Sesion
+const loginFunction = () => {
+  var email = document.getElementById('emailLogin').value;
+  var password = document.getElementById('passwordLogin').value;
+  console.log('Estoy adentro de la sesion');
 
-
-    firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      window.alert('Ocurrió un error al Iniciar Sesión \n\n' + 'Código de error: ' + errorCode + '\nMensaje: ' + errorMessage);
-    });
-  };
-  document.getElementById('btnLogin').addEventListener('click', () => { loginFunction() });
+  firebase.auth().signInWithEmailAndPassword(email, password).catch(function (error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    window.alert('Ocurrió un error al Iniciar Sesión \n\n' + 'Código de error: ' + errorCode + '\nMensaje: ' + errorMessage);
+  });
+};
+document.getElementById('btnLogin').addEventListener('click', () => { loginFunction() });
 }
