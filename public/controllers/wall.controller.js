@@ -1,4 +1,4 @@
-const wallController = (rawTpl, outlet) => {    
+const wallController = (rawTpl, outlet) => {
 
   const again = () => {
       document.getElementById('btnLogOut').addEventListener('click', () => logoutFunction());
@@ -6,9 +6,13 @@ const wallController = (rawTpl, outlet) => {
       const removeButtons = document.getElementsByClassName('removePost');
       for(const button of removeButtons) {
         button.addEventListener('click', (event)=> removePost(event));
+      }
+        const modButtons = document.getElementsByClassName('modPost');
+      for(const button of modButtons) {
+        button.addEventListener('click', (event)=> modPost(event));
     }
   }
- 
+
   //Función para Cerrar Sesión
   const logoutFunction = () => {
       firebase.auth().signOut().then(function () {
@@ -18,7 +22,7 @@ const wallController = (rawTpl, outlet) => {
       // An error happened.
       console.log('Error al intentar salir de la sesión');
       });
-  }    
+  }
 
   //creacion del post
   const createPost = () => {
@@ -37,6 +41,15 @@ const wallController = (rawTpl, outlet) => {
     firebase.database().ref(`/posts/${postId}`).remove();
   }
 
+  //Modificar Post - text hi ok
+const modPost = (event) => {
+  /* let saveBtn = document.getElementsByClassName('modPost');
+  saveBtn.innerHTML='Guardar'; */
+  const postText = document.getElementById('postText').value;
+  const updateText = {text:postText}
+  const postId = event.target.dataset.id;
+  return firebase.database().ref(`/posts/${postId}`).update(updateText);
+  }
 
   //para que aparezca el mas reciente primero
   firebase.database().ref('/posts/').on('value', function(snapshot){
