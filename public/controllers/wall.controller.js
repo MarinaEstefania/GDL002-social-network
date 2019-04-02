@@ -43,14 +43,16 @@ const wallController = (rawTpl, outlet) => {
 
   //Modificar Post - text hi ok
 const modPost = (event) => {
-  /* let saveBtn = document.getElementsByClassName('modPost');
-  saveBtn.innerHTML='Guardar'; */
+  
+  let button = document.querySelector('#btnEdit');
+  button.innerHTML = 'Guardar'
+  button.onclick = function () {
   const postText = document.getElementById('postText').value;
   const updateText = {text:postText}
   const postId = event.target.dataset.id;
   return firebase.database().ref(`/posts/${postId}`).update(updateText);
   }
-
+}
   //para que aparezca el mas reciente primero
   firebase.database().ref('/posts/').on('value', function(snapshot){
     let posts = snapshot.val();

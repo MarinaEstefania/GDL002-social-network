@@ -14,10 +14,10 @@
 
  <%for(let index in posts) {%>
     <div>
-        <p> <%posts[index].text%> </p>
+        <p id="postArea"> <%posts[index].text%> </p>
 
         <button>Like (2)</button>
-        <button data-id="<%posts[index].id%>" class="modPost">Editar</button>
+        <button id="btnEdit" data-id="<%posts[index].id%>" class="modPost">Editar</button>
         <button data-id="<%posts[index].id%>" class="removePost">Eliminar</button>
     </div>
 <%}%>
