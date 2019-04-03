@@ -43,8 +43,8 @@ const wallController = (rawTpl, outlet) => {
 
   //Modificar Post - text hi ok
 const modPost = (event) => {
-  
-  let button = document.querySelector('#btnEdit');
+
+  let button = event.target;
   button.innerHTML = 'Guardar'
   button.onclick = function () {
   const postText = document.getElementById('postText').value;
