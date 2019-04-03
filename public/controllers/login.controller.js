@@ -1,11 +1,11 @@
 const loginController = (rawTpl, outlet) => {
-  const tpl = templateEngine(rawTpl, {posts: []});
+  const tpl = templateEngine(rawTpl, { posts: [] });
   outlet.innerHTML = tpl;
 
-//Funcion para registrar a los usuarios nuevos
-const registerFunction = () => {
-  var email = document.getElementById('emailRegister').value;
-  var password = document.getElementById('passwordRegister').value;
+  //Funcion para registrar a los usuarios nuevos
+  const registerFunction = () => {
+    var email = document.getElementById('emailRegister').value;
+    var password = document.getElementById('passwordRegister').value;
 
   firebase.auth().createUserWithEmailAndPassword(email, password)
     .then(function () { //Función para verificar por correo electrónico a un usuario
