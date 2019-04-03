@@ -12,14 +12,12 @@
     <button type="button" id="publishBtn">Publicar</button>
 </form>
 
- <%for(let index in posts) {%>
-    <div>
-        <p id="postArea"> <%posts[index].text%> </p>
+<%for(let index in posts) {%>
+<div>
+    <p id="postArea"> <%posts[index].text%> </p>
 
-        <button data-id="<%posts[index].id%>" data-likes="<%posts[index].likes%>" class="likePost">Like
-            (<%posts[index].likes%>) </button>
-        <button id="btnEdit" data-id="<%posts[index].id%>" class="modPost">Editar</button>
-        <button data-id="<%posts[index].id%>" class="removePost">Eliminar</button>
-    </div>
-
+    <button data-id="<%posts[index].id%>" data-likes="<%posts[index].likes%>" class="likePost">Like (<%posts[index].likes%>) </button>
+    <button id="btnEdit" data-id="<%posts[index].id%>" class="modPost">Editar</button>
+    <button data-id="<%posts[index].id%>" class="removePost">Eliminar</button>
+</div>
 <%}%>
