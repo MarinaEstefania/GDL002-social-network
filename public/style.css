@@ -10848,11 +10848,10 @@
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      height: 100%;
       text-align: center;
       background-color: #20c997;
       padding: 8vw;
-     
+      height: 100vh;
       /* box-sizing: border-box; */
   }
 
