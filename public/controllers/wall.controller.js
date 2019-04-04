@@ -31,7 +31,7 @@ const wallController = (rawTpl, outlet) => {
   //creacion del post
   const createPost = () => {
     const postText = document.getElementById('postText').value; // obtiene el texto que el usuario ingresó en el input
-    if (postText.length < 0) return; // condicion para que no deje publicar sin contenido // return para que termine ahí y no continue haciendo lo demás :) 
+    if (postText.length < 1) return; // condicion para que no deje publicar sin contenido // return para que termine ahí y no continue haciendo lo demás :) 
     firebase.database().ref('/posts').push().set(  //Referencia para acceder a la base de datos para que lleve nuestro postext
       {
         text: postText,
@@ -54,7 +54,7 @@ const wallController = (rawTpl, outlet) => {
     firebase.database().ref(`/posts/${postId}`).update({ likes: likes });
 
   }
- //Modificar Post - text hi ok
+ //Modificar Post
   const modPost = (event) => {
   let button = event.target;
   button.innerHTML = 'Guardar'
@@ -65,10 +65,6 @@ const wallController = (rawTpl, outlet) => {
   return firebase.database().ref(`/posts/${postId}`).update(updateText);
   }
 }
-
-
-
-
 
   //para que aparezca el mas reciente primero
   firebase.database().ref('/posts/').on('value', function (snapshot) {
